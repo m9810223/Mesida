@@ -1,6 +1,6 @@
 module.exports = {
   rootDir: '..',
-  roots: ['<rootDir>/src/test'],
+  roots: ['<rootDir>/src'],
   setupFilesAfterEnv: ['<rootDir>/configs/jest.setup.js'],
   collectCoverage: false,
   testEnvironment: 'jsdom',
@@ -10,10 +10,9 @@ module.exports = {
     __NAME__: 'readonly',
     __VERSION__: 'readonly',
     __MODE__: 'readonly',
-    __SITEID__: 'readonly',
   },
   moduleNameMapper: {
+    // alias:
     '^core(.*)$': '<rootDir>/src/core$1',
-    '^sites(.*)$': '<rootDir>/src/sites$1',
   },
 };

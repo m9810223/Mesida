@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { decode } from 'core/Storage/codec';
+import { decode } from './Storage/codec';
 
 window[__WINVAR__] ??= {
   logs: [],

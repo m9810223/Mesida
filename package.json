@@ -1,14 +1,15 @@
 {
-  "name": "mesida",
-  "license": "MIT",
-  "version": "1.0.0",
+  "license": "BSD-3-Clause",
+  "config": {
+    "windowVar": "Mesida",
+    "port": "4000"
+  },
   "scripts": {
-    "webpack": "NODE_ENV=production ./scripts/webpack-site.sh",
-    "server": "http-server --silent --port $npm_package_config_port ./dist",
-    "watch": "./scripts/webpack-watch-site.sh",
-    "server_and_watch": "npm-run-all --parallel \"server\" \"watch {1}\" --",
-    "dev": "NODE_ENV=development npm-run-all \"server_and_watch {1}\" --",
-    "prod": "NODE_ENV=production npm-run-all \"server_and_watch {1}\" --",
+    "_server": "http-server --silent --port ${npm_package_config_port} ./dist",
+    "_watch": "./scripts/webpack-watch.sh",
+    "_server_and_watch": "npm-run-all --parallel \"_server\" \"_watch {@}\" --",
+    "dev": "npm-run-all \"_server_and_watch {@}\" --",
+    "build": "NODE_ENV=production ./scripts/webpack.sh",
     "prettier": "prettier --config ./.prettierrc.js --check ./src",
     "prettier:fix": "prettier --loglevel silent --config ./.prettierrc.js --write ./src",
     "eslint": "eslint --config ./.eslintrc.js src",
@@ -16,32 +17,7 @@
     "jest:dev": "npm-run-all \"jest {1}\" -- --watchAll",
     "test": "npm-run-all --sequential \"prettier\" \"jest\" \"eslint\""
   },
-  "config": {
-    "windowVar": "Mesida",
-    "port": "4000"
-  },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/eslint-parser": "^7.15.4",
-    "@babel/plugin-transform-runtime": "^7.15.0",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/runtime": "^7.15.4",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.2.0",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-jest": "^24.4.0",
-    "http-server": "^13.0.2",
-    "jest": "^27.2.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.4.0",
-    "prettier-eslint": "^13.0.0",
-    "vue-eslint-parser": "^7.11.0",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0"
+    "mesida": "file:src/core"
   }
 }

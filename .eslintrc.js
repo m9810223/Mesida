@@ -15,7 +15,7 @@ module.exports = {
     // semi: ['warn', 'always'],
     // quotes: ['warn', 'single'],
     // 'no-console': 'error',
-    'max-len': [2, { code: prettierrc.printWidth, tabWidth: prettierrc.tabWidth }],
+    'max-len': [2, { code: prettierrc.printWidth + 10, tabWidth: prettierrc.tabWidth }],
     // (prettier)
     'comma-dangle': ['error', 'only-multiline'],
     'operator-linebreak': ['error', 'after'],
@@ -25,15 +25,14 @@ module.exports = {
     __NAME__: 'readonly',
     __VERSION__: 'readonly',
     __MODE__: 'readonly',
-    __SITEID__: 'readonly',
   },
   plugins: ['jest', 'import'],
-  ignorePatterns: ['examples/inject.js', 'dist/*.js'],
+  ignorePatterns: ['examples/inject.js', 'dist/*.js', 'scripts/*.js', 'configs/*.js'],
   settings: {
     'import/resolver': {
       alias: [
+        // alias:
         ['core', './src/core'],
-        ['sites', './src/sites'],
       ],
     },
   },

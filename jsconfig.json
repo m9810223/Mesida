@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
-  },
-  "exclude": ["node_modules", "dist"]
+    "baseUrl": ".",
+    "paths": {
+      // alias: for vscode
+      "core": ["./src/core"]
+    }
+  }
 }

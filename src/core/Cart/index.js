@@ -18,8 +18,11 @@ export default class Cart {
     payment = '',
     currency = undefined,
   } = {}) {
-    this.products = [...products];
-    this.total = Number((Number(total) || 0).toFixed(2));
+    this.products = [];
+    this.add(...Array.from(products));
+    if (total !== undefined) {
+      this.total = Number((Number(total) || 0).toFixed(2));
+    }
     this.orderId = String(orderId) || undefined;
     this.payment = String(payment) || undefined;
     this.currency = String(currency) || undefined;
