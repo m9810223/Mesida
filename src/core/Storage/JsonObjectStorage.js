@@ -12,11 +12,9 @@ export default class JsonObjectStorage {
 
   #storage;
 
-  constructor(storageType = 'localStorage', namespace = `${__NAME__}_${String(__MODE__).slice(0, 3)}`) {
-    this.#namespace = namespace;
-    this.#storageType = storageType;
-    this.#storage = new SingleEntryStorage(this.#storageType);
-  }
+  #keyOrderIds = '_orderIds';
+
+  #keyCart = '_cart';
 
   get namespace() {
     return this.#namespace;
@@ -24,6 +22,30 @@ export default class JsonObjectStorage {
 
   get storageType() {
     return this.#storageType;
+  }
+
+  get cart() {
+    return this.get(this.#keyCart);
+  }
+
+  set cart(cart) {
+    return this.set(this.#keyCart, cart);
+  }
+
+  get orderIds() {
+    return this.get(this.#keyOrderIds) ?? [];
+  }
+
+  saveOrderId(orderId) {
+    const { orderIds } = this;
+    orderIds.push(orderId);
+    return this.set(this.#keyOrderIds, orderIds);
+  }
+
+  constructor(storageType = 'localStorage', namespace = `${__NAME__}_${String(__MODE__).slice(0, 3)}`) {
+    this.#namespace = namespace;
+    this.#storageType = storageType;
+    this.#storage = new SingleEntryStorage(this.#storageType);
   }
 
   #get() {

@@ -15,7 +15,7 @@ module.exports = {
     // semi: ['warn', 'always'],
     // quotes: ['warn', 'single'],
     // 'no-console': 'error',
-    'max-len': [2, { code: prettierrc.printWidth, tabWidth: prettierrc.tabWidth }],
+    'max-len': [2, { code: prettierrc.printWidth + 10, tabWidth: prettierrc.tabWidth }],
     // (prettier)
     'comma-dangle': ['error', 'only-multiline'],
     'operator-linebreak': ['error', 'after'],
