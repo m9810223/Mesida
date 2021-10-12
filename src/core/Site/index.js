@@ -11,8 +11,6 @@ export default class Site {
 
   #triggers;
 
-  #publishers;
-
   constructor(siteConfig) {
     logger.debug('siteConfig:', siteConfig);
     if (window.tagtoo_advertiser_id !== siteConfig.id) {
@@ -22,18 +20,17 @@ export default class Site {
     this.#id = siteConfig.id;
     this.#triggers = Array.from(siteConfig.triggers ?? []).filter((x) => x instanceof Trigger);
     logger.debug('triggers', this.#triggers);
-    this.#publishers = Array.from(siteConfig.trackers ?? []).reduce(
-      (acc, cur) => [...acc, ...cur.publishers.filter((x) => x instanceof Publisher)],
-      []
-    );
-    logger.debug('publishers', this.#publishers);
+    logger.debug('install trackers: start');
+    Array.from(siteConfig.trackers ?? [])
+      .reduce((acc, cur) => [...acc, ...cur.publishers.filter((x) => x instanceof Publisher)], [])
+      .forEach((publisher) => {
+        publisher.install?.();
+      });
+    logger.debug('install trackers: done');
   }
 
   listen() {
     logger.debug('🎧');
-    this.#publishers.forEach((publisher) => {
-      publisher.install?.();
-    });
     this.#triggers.forEach((trigger) => {
       trigger.listen?.();
     });
