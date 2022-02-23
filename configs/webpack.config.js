@@ -58,7 +58,7 @@ const defaultConfig = (siteIds) => {
       ],
     },
   };
-  console.log('\x1B[31;7m', config.mode, '\x1B[0m');
+  console.log('\x1B[31;7m', config.mode, '\x1B[0m', config.mode !== 'production' ? '\n    => inject script: ./examples/inject.js\n' : '');
   // console.log('\x1B[31;7m', `http://localhost:${packageJson.config.port}/${siteIds}.js`, '\x1B[0m');
   return config;
 };
